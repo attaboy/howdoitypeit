@@ -18,11 +18,16 @@ $(function() {
 				var result = '';
 				var lastIndex = 0;
 				var nextIndex = 0;
+				var match;
 				while (lastIndex !== -1) {
 					nextIndex = lowered.indexOf(searchString, lastIndex);
 					if (nextIndex !== -1) {
 						result += html.substring(lastIndex, nextIndex);
-						result += '<span class="highlight">' + html.substr(nextIndex, searchString.length) + '</span>';
+						match = html.substr(nextIndex, searchString.length);
+						if (match.search(/^&.+;$/) !== -1) {
+							match = '&amp;' + match.substr(1);
+						}
+						result += '<span class="highlight">' + match + '</span>';
 						lastIndex = nextIndex + searchString.length;
 					} else {
 						result += html.substring(lastIndex);
@@ -54,6 +59,7 @@ $(function() {
 		var search;
 		if (e.keyCode === 27) {
 			this.value = '';
+			this.blur();
 		}
 		search = this.value;
 		if (search === lastSearch) { return; }
@@ -64,4 +70,10 @@ $(function() {
 		filterToHighlighted();
 		lastSearch = search;
 	}).focus();
+	
+	$('body').bind('keyup', function(e) {	
+		if (e.keyCode === 191 && !e.shiftKey && !e.ctrlKey && !e.metaKey) {
+			$('#search').focus();
+		}
+	});
 })
