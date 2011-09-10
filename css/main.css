@@ -1,0 +1,197 @@
+.glass(@color1, @color2, @color3, @color4) {
+	background: -moz-linear-gradient(top, @color1 0%, @color2 50%, @color3 51%, @color4 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@color1), color-stop(50%,@color2), color-stop(51%,@color3), color-stop(100%,@color4));
+	background: -webkit-linear-gradient(top, @color1 0%,@color2 50%,@color3 51%,@color4 100%);
+	background: -o-linear-gradient(top, @color1 0%,@color2 50%,@color3 51%,@color4 100%);
+	background: -ms-linear-gradient(top, @color1 0%,@color2 50%,@color3 51%,@color4 100%);
+	filter: ~"progid:DXImageTransform.Microsoft.gradient( startColorstr='@color1', endColorstr='@color4',GradientType=0 )";
+	background: linear-gradient(top, @color1 0%,@color2 50%,@color3 51%,@color4 100%);
+}
+
+.gradient(@color1, @color2, @stop1, @color3) {
+	background: -moz-linear-gradient(top, @color1 0%, @color2 @stop1, @color3 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@color1), color-stop(@stop1,@color2), color-stop(100%,@color3));
+	background: -webkit-linear-gradient(top, @color1 0%,@color2 @stop1,@color3 100%);
+	background: -o-linear-gradient(top, @color1 0%,@color2 @stop1,@color3 100%);
+	background: -ms-linear-gradient(top, @color1 0%,@color2 @stop1,@color3 100%);
+	filter: ~"progid:DXImageTransform.Microsoft.gradient( startColorstr='@color1', endColorstr='@color2',GradientType=0 )";
+	background: linear-gradient(top, @color1 0%,@color2 @stop1,@color3 100%);
+}
+
+html {
+	height: 100%;
+}
+
+html, body {
+	background: #e6d546;
+	.gradient(#e6d546, #ffef89, 26%, #ffef89);
+	background-repeat: repeat-x;
+}
+
+body {
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+}
+
+body, input {
+	font-family: "Gentium Book Basic", Constantia, Georgia, serif;
+}
+
+.main {
+	position: relative;
+	width: 800px;
+	margin: 0 auto;
+	background-color: #FAF6FB;
+	padding: 0;
+	box-shadow: 0 0 10px rgba(0,0,0,.333);
+}
+
+h1, h2, h3, h4, h5, h6, th, td, caption {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	text-align: left;
+}
+
+a {
+	text-decoration: none;
+	color: #b57695;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+header, footer, th {
+	color: white;
+	text-shadow: 0 -1px 0 rgba(0,0,0,1);
+}
+
+header, footer {
+	background-color: #5b3671;
+	.gradient(#5b3671, #745486, 80%, #745486);
+	padding: 60px 10px 10px;
+	font-size: 1.2em;
+}
+
+header a, footer a, thead a {
+	color: #FFEF89;
+}
+
+footer {
+	padding: 1em 20px 1px;
+}
+
+p {
+	margin: 0 0 1em 0;
+}
+
+h1 {
+	font-size: 1em;
+}
+
+header h2 {
+	font-size: .85em;
+	position: absolute;
+	top: 40px;
+	color: #b394c5;
+	text-transform: uppercase;
+}
+
+input[type=search] {
+	position: absolute;
+	top: 58px;
+	right: 10px;
+	width: 10em;
+	font-size: 100%;
+}
+
+.glossary {
+	position: absolute;
+	top: 62px;
+	left: 300px;
+	font-size: .85em;
+	line-height: 20px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+caption {
+	font-style: italic;
+	padding: 20px 0 5px 10px;
+}
+
+th, td {
+	padding: 5px 10px 5px 10px;
+	border-width: 1px 0 1px 0;
+	border-color: #ffddf7;
+	border-style: solid;
+}
+
+th:first-child, td:first-child {
+	border-left-width: 0;
+} 
+
+th:last-child, td:last-child {
+	border-right-width: 0;
+} 
+
+.list {
+	width: 100%;
+}
+
+thead th {
+	background-color: #e76b00;
+	.glass(#e76b00, #ea7c1d, #e76b00, #ea7c1d);
+	border-top: 0;
+	border-bottom: 0;
+	border-right-color: #4D3452;
+	border-left-color: #4D3452;
+}
+
+tbody td {
+	background-color: white;
+}
+
+tbody th {
+	background-color: #b57695;
+	.gradient(#a06884, #b57695, 80%, #a06884);
+	border-top: 0;
+	text-transform: uppercase;
+	font-size: .85em;
+}
+
+th.entity {
+	white-space: nowrap;
+}
+td.entity {
+	font-size: 2.5em;
+}
+td.mac {
+	font-size: 1.4em;
+}
+td.html {
+	font-family: Menlo, Consolas, Andale Mono, Courier, monospace;
+}
+
+.highlight {
+	background-color: black;
+	color: white;
+}
+
+tbody.highlighted td {
+	background-color: #CCC;
+	color: #999;
+}
+
+tbody.highlighted tr.highlighted td.entity,
+tbody.highlighted tr.highlighted td.description,
+tbody.highlighted tr.highlighted td.mac,
+tbody.highlighted tr.highlighted td.html,
+tbody.highlighted tr.highlighted td.ascii {
+	background-color: #FFF;
+	color: black;
+}
