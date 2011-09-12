@@ -40,8 +40,6 @@ body, input {
 
 .main {
 	position: relative;
-	width: 800px;
-	margin: 0 auto;
 	background-color: #FAF6FB;
 	padding: 0;
 	box-shadow: 0 0 10px rgba(0,0,0,.333);
@@ -63,9 +61,22 @@ a:hover {
 	text-decoration: underline;
 }
 
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	border-bottom: 1px solid #533166;
+	box-shadow: 0 5px 10px rgba(0,0,0,.25);
+}
+
+section.meat {
+	padding-top: 91px;
+}
+
 header, footer, th {
 	color: white;
-	text-shadow: 0 -1px 0 rgba(0,0,0,1);
+	text-shadow: 0 -1px 0 rgba(0,0,0,.75);
 }
 
 header, footer {
@@ -81,6 +92,7 @@ header a, footer a, thead a {
 
 footer {
 	padding: 1em 20px 1px;
+	border-top: 1px solid #2e1c3a;
 }
 
 p {
@@ -99,12 +111,20 @@ header h2 {
 	text-transform: uppercase;
 }
 
-input[type=search] {
+#search {
 	position: absolute;
 	top: 58px;
 	right: 10px;
 	width: 10em;
 	font-size: 100%;
+	padding-left: 7px;
+	background-color: #3e254c;
+	color: white;
+	border-color: #1f1226;
+	border-radius: 5px;
+	&:focus {
+		outline-width: 0;
+	}
 }
 
 .glossary {
@@ -116,7 +136,8 @@ input[type=search] {
 }
 
 table {
-	border-collapse: collapse;
+	border-spacing: 0;
+	border-top: 1px solid #fc993c;
 }
 
 caption {
@@ -126,7 +147,7 @@ caption {
 
 th, td {
 	padding: 5px 10px 5px 10px;
-	border-width: 1px 0 1px 0;
+	border-width: 0 0 1px 0;
 	border-color: #ffddf7;
 	border-style: solid;
 }
@@ -146,8 +167,7 @@ th:last-child, td:last-child {
 thead th {
 	background-color: #e76b00;
 	.glass(#e76b00, #ea7c1d, #e76b00, #ea7c1d);
-	border-top: 0;
-	border-bottom: 0;
+	border-bottom-color: #a04a00;
 	border-right-color: #4D3452;
 	border-left-color: #4D3452;
 }
@@ -159,7 +179,7 @@ tbody td {
 tbody th {
 	background-color: #b57695;
 	.gradient(#a06884, #b57695, 80%, #a06884);
-	border-top: 0;
+	border-top: 1px solid #cca2b7;
 	text-transform: uppercase;
 	font-size: .85em;
 }

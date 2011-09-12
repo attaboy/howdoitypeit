@@ -51,7 +51,33 @@ $(function() {
 		} else {
 			$('tbody').removeClass('highlighted').find('tr.highlighted').removeClass('highlighted');
 		}
-	}
+	};
+	
+	var scrollSet;
+	var scrollIndex;
+	
+	var scrollToNext = function() {
+		if (!scrollSet) {
+			scrollSet = $('.highlight');
+			scrollIndex = 0;
+		}
+		if (scrollIndex + 1 < scrollSet.length) {
+			scrollIndex++;
+		} else {
+			scrollIndex = 0;
+		}
+		var before = window.scrollY;
+		$.scrollTo(scrollSet.eq(scrollIndex), {
+			offset: -($('table').offset().top + 20),
+			duration: 250,
+			onAfter: function() {
+				var after = window.scrollY;
+				if (before === after) {
+					scrollToNext();
+				}
+			}
+		});
+	};
 	
 	var lastSearch;
 	
@@ -62,13 +88,18 @@ $(function() {
 			this.blur();
 		}
 		search = this.value;
-		if (search === lastSearch) { return; }
-		$('.highlight').each(removeHighlights);
-		if (search) {
-			highlightRecursively(tableCells, search);
+		if (search !== lastSearch) {
+			$('.highlight').each(removeHighlights);
+			if (search) {
+				highlightRecursively(tableCells, search);
+			}
+			filterToHighlighted();
+			lastSearch = search;
+			scrollSet = null;
 		}
-		filterToHighlighted();
-		lastSearch = search;
+		if (e.keyCode === 13) {
+			scrollToNext();
+		}
 	}).focus();
 	
 	$('body').bind('keyup', function(e) {	
