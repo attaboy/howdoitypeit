@@ -18,6 +18,8 @@
 	background: linear-gradient(top, @color1 0%,@color2 @stop1,@color3 100%);
 }
 
+@borderColor: #ffddf7;
+
 html {
 	height: 100%;
 }
@@ -111,12 +113,17 @@ header h2 {
 	text-transform: uppercase;
 }
 
-#search {
+.searchBox {
 	position: absolute;
 	top: 58px;
 	right: 10px;
+	input {
+		font-size: 100%;
+	}
+}
+
+#searchInput {
 	width: 10em;
-	font-size: 100%;
 	padding-left: 7px;
 	background-color: #3e254c;
 	color: white;
@@ -127,13 +134,48 @@ header h2 {
 	}
 }
 
-.glossary {
+.glossaryBox {
 	position: absolute;
 	top: 62px;
 	left: 300px;
 	font-size: .85em;
 	line-height: 20px;
 }
+
+#glossary {
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: all ease-in 0.2s;
+	-moz-transition: all ease-in 0.2s;
+	position: absolute;
+	top: 1.5em;
+	margin: 0;
+	background-color: white;
+	color: black;
+	text-shadow: none;
+	box-shadow: 0 5px 10px rgba(0,0,0,.5);
+	border-radius: 5px;
+	width: 20em;
+	padding: 10px;
+	dt, dd {
+		padding: 5px 0;
+	}
+	dt {
+		clear: left;
+		float: left;
+		width: 3em;
+	}
+	dd {
+		padding-left: 3em;
+		margin: 0;
+	}
+}
+
+.glossaryBox.open #glossary {
+	opacity: 1;
+	visibility: visible;
+}
+
 
 table {
 	border-spacing: 0;
@@ -148,7 +190,7 @@ caption {
 th, td {
 	padding: 5px 10px 5px 10px;
 	border-width: 0 0 1px 0;
-	border-color: #ffddf7;
+	border-color: @borderColor;
 	border-style: solid;
 }
 
@@ -193,6 +235,10 @@ td.entity {
 td.mac {
 	font-size: 1.4em;
 }
+td.iphone {
+	white-space: nowrap;
+	line-height: 1.5em;
+}
 td.html {
 	font-family: Menlo, Consolas, Andale Mono, Courier, monospace;
 }
@@ -202,7 +248,8 @@ td.html {
 	color: white;
 }
 
-tbody.highlighted td {
+tbody.highlighted td,
+tbody.highlighted .key {
 	background-color: #CCC;
 	color: #999;
 }
@@ -210,8 +257,42 @@ tbody.highlighted td {
 tbody.highlighted tr.highlighted td.entity,
 tbody.highlighted tr.highlighted td.description,
 tbody.highlighted tr.highlighted td.mac,
+tbody.highlighted tr.highlighted td.iphone,
 tbody.highlighted tr.highlighted td.html,
 tbody.highlighted tr.highlighted td.ascii {
 	background-color: #FFF;
 	color: black;
+}
+
+.key,
+tbody.highlighted tr.highlighted .key {
+	font-family: 'Lucida Grande';
+	background-color: #f4f4f4;
+	border: 1px solid #cccccc;
+	border-radius: 2px;
+	margin-right: 2px;
+	padding: 1px 2px;
+	color: black;
+}
+
+.key.modifier,
+tbody.highlighted tr.highlighted .key.modifier {
+	color: #6f6c71;
+}
+
+.key.inverted,
+tbody.highlighted tr.highlighted .key.inverted {
+	background-color: #6f6c71;
+	color: white;
+	letter-spacing: -1px;
+}
+
+.key.touchhold,
+tbody.highlighted tr.highlighted .key.touchhold {
+	border-width: 1px 5px;
+}
+
+.notAvailable,
+tbody.highlighted tr.highlighted .notAvailable {
+	color: #808080;
 }

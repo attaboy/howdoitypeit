@@ -47,14 +47,17 @@ $(function() {
 		$('.highlighted').removeClass('highlighted');
 		var highlighted = $('.highlight').parents('tr').addClass('highlighted');
 		if (highlighted.length > 0) {
+			$('#searchButton').attr('disabled', false);
 			$('tbody').addClass('highlighted');
 		} else {
+			$('#searchButton').attr('disabled', true);
 			$('tbody').removeClass('highlighted').find('tr.highlighted').removeClass('highlighted');
 		}
 	};
 	
 	var scrollSet;
 	var scrollIndex;
+	var evenBefore;
 	
 	var scrollToNext = function() {
 		if (!scrollSet) {
@@ -66,13 +69,18 @@ $(function() {
 		} else {
 			scrollIndex = 0;
 		}
+		if (!evenBefore) {
+			evenBefore = window.scrollY;
+		}
 		var before = window.scrollY;
-		$.scrollTo(scrollSet.eq(scrollIndex), {
+		var item = scrollSet.eq(scrollIndex);
+		if (!item) { return; }
+		$.scrollTo(item, {
 			offset: -($('table').offset().top + 20),
-			duration: 250,
+			duration: 150,
 			onAfter: function() {
 				var after = window.scrollY;
-				if (before === after) {
+				if (before === after && before !== evenBefore) {
 					scrollToNext();
 				}
 			}
@@ -81,7 +89,7 @@ $(function() {
 	
 	var lastSearch;
 	
-	$('#search').keyup(function(e) {
+	$('#searchInput').keyup(function(e) {
 		var search;
 		if (e.keyCode === 27) {
 			this.value = '';
@@ -102,9 +110,19 @@ $(function() {
 		}
 	}).focus();
 	
-	$('body').bind('keyup', function(e) {	
+	$('#searchButton').click(function() { scrollToNext(); });
+	
+	$('#glossaryLink').click(function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		$('.glossaryBox').toggleClass('open');
+	});
+	
+	$('body').keyup(function(e) {	
 		if (e.keyCode === 191 && !e.shiftKey && !e.ctrlKey && !e.metaKey) {
-			$('#search').focus();
+			$('#searchInput').focus();
 		}
+	}).click(function(e) {
+		$('.glossaryBox').removeClass('open');
 	});
 })

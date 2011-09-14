@@ -12,10 +12,25 @@
 	<header>
 		<h1>How do you type it?</h1>
 		<h2>U.S. Keyboard Edition</h2>
-		<input type="text" placeholder="Search" id="search">
+		<div class="searchBox">
+			<input type="text" placeholder="Search" id="searchInput">
+			<input type="button" value="Show match" id="searchButton" disabled>
+		</div>
 		
-		<div class="glossary">
-		⌥ Option/Alt &nbsp; ⇧ Shift
+		<div class="glossaryBox">
+			<a href="#glossary" id="glossaryLink">Shortcut glossary</a>
+			<dl id="glossary">
+				<dt><span class="key modifier">⌥</span></dt>
+				<dd>Hold the Option (Alt) key</dd>
+				<dt><span class="key modifier">⇧</span></dt>
+				<dd>Hold the Shift key</dd>
+				<dt><span class="key touchhold">.</span></dt>
+				<dd>Touch and hold the key shown</dd>
+				<dt><span class="key inverted">123</span></dt>
+				<dd>Tap the 123 key on the touchscreen to access other keys</dd>
+				<dt><span class="notAvailable">—</span></dt>
+				<dd>You’re SOL — use copy/paste from somewhere else</dd>
+			</dl>
 		</div>
 	</header>
 	<section class="meat">
@@ -26,19 +41,21 @@
 					<th class="description">What it’s called</th>
 					<th class="ascii">ASCII<a href="#ascii" title="The way people usually type this">†</a></th>
 					<th class="mac">Mac</th>
+					<th class="iphone">iPhone</th>
 					<th class="html">Entity<a href="#entity" title="A safe way to type this symbol in HTML documents">‡</a></th>
 					<th class="notes">What were they thinking?</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<th colspan="6">Punctuation</th>
+					<th colspan="7">Punctuation</th>
 				</tr>
 				<tr>
 					<td class="entity">“</td>
 					<td class="description">Left double quotation mark</td>
 					<td class="ascii">"</td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">[</span></td>
+					<td class="iphone" rowspan="2"><span class="key inverted">123</span><span class="key touchhold">"</span></td>
 					<td class="html">&amp;ldquo;</td>
 					<td class="notes" rowspan="4">In a saner world, Apple would have put the right single and double quotation symbols on the right bracket key, and the left on the left bracket key. But no.</td>
 				</tr>
@@ -54,6 +71,7 @@
 					<td class="description">Left single quotation mark</td>
 					<td class="ascii">'</td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">]</span></td>
+					<td class="iphone" rowspan="2"><span class="key inverted">123</span><span class="key touchhold">'</span></td>
 					<td class="html">&amp;lsquo;</td>
 				</tr>
 				<tr>
@@ -68,6 +86,7 @@
 					<td class="description">Left double angle quotation mark</td>
 					<td class="ascii">&lt;&lt;</td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">\</span></td>
+					<td class="iphone" rowspan="2"><span class="key inverted">123</span><span class="key touchhold">"</span></td>
 					<td class="html">&amp;laquo;</td>
 					<td class="notes" rowspan="2">These are quotation marks in French and other languages. Using them as arrows is potentially confusing.</td>
 				</tr>
@@ -83,6 +102,7 @@
 					<td class="description">En dash</td>
 					<td class="ascii">-</td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">-</span></td>
+					<td class="iphone" rowspan="2"><span class="key inverted">123</span><span class="key touchhold">-</span></td>
 					<td class="html">&amp;ndash;</td>
 					<td class="notes" rowspan="2">En dashes are used for ranges, like 0–60, and they’re theoretically the width of an “N”. Em dashes are used to interrupt a thought — they’re traditionally the width of an “M”. The plain old hyphen key is for hyphen-ation.
 				</tr>
@@ -98,25 +118,46 @@
 					<td class="description">Ellipsis</td>
 					<td class="ascii">...</td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">;</span></td>
+					<td class="iphone"><span class="key inverted">123</span><span class="key touchhold">.</span></td>
 					<td class="html">&amp;hellip;</td>
 					<td class="notes">Semi-colons are also punctuation.</td>
 				</tr>
 				<tr>
-					<th colspan="6">Currency</th>
+					<td class="entity">¡</td>
+					<td class="description">Inverted exclamation mark</td>
+					<td class="ascii"></td>
+					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">1</span></td>
+					<td class="iphone"><span class="key inverted">123</span><span class="key touchhold">!</span></td>
+					<td class="html">&amp;iexcl;</td>
+					<td class="notes">¡Claro que si!</td>
+				</tr>
+				<tr>
+					<td class="entity">¿</td>
+					<td class="description">Inverted question mark</td>
+					<td class="ascii"></td>
+					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key modifier">⇧</span><span class="key">/</span></td>
+					<td class="iphone"><span class="key inverted">123</span><span class="key touchhold">?</span></td>
+					<td class="html">&amp;iquest;</td>
+					<td class="notes">¿Por qué no?</td>
+				</tr>
+				<tr>
+					<th colspan="7">Currency</th>
 				</tr>
 				<tr>
 					<td class="entity">€</td>
 					<td class="description">Euro symbol</td>
 					<td class="ascii">E</td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key modifier" title="Shift">⇧</span><span class="key">2</span></td>
+					<td class="iphone"><span class="key inverted">123</span><span class="key touchhold">$</span>&nbsp;or<br><span class="key inverted">123</span><span class="key inverted">#+=</span><span class="key">€</span></td>
 					<td class="html">&amp;euro;</td>
-					<td class="notes">£ and $ are nearby.</td>
+					<td class="notes">They probably stuck this here because £ and $ are nearby.</td>
 				</tr>
 				<tr>
 					<td class="entity">£</td>
 					<td class="description">Pound symbol</td>
 					<td class="ascii">GBP</td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">3</span></td>
+					<td class="iphone"><span class="key inverted">123</span><span class="key touchhold">$</span>&nbsp;or<br><span class="key inverted">123</span><span class="key inverted">#+=</span><span class="key">£</span></td>
 					<td class="html">&amp;pound;</td>
 					<td class="notes">The # symbol is also called pound.</td>
 				</tr>
@@ -125,6 +166,7 @@
 					<td class="description">Cent symbol</td>
 					<td class="ascii">$.00</td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">4</span></td>
+					<td class="iphone"><span class="key inverted">123</span><span class="key touchhold">$</span></td>
 					<td class="html">&amp;cent;</td>
 					<td class="notes">Makes cents to have this on the $ key.</td>
 				</tr>
@@ -133,17 +175,20 @@
 					<td class="description">Yen symbol</td>
 					<td class="ascii">Y</td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">Y</span></td>
+					<td class="iphone"><span class="key inverted">123</span><span class="key touchhold">$</span>&nbsp;or<br><span class="key inverted">123</span><span class="key inverted">#+=</span><span class="key">¥</span></td>
 					<td class="html">&amp;yen;</td>
 					<td class="notes">Where else would you put this?</td>
 				</tr>
 				<tr>
-					<th colspan="6">Miscellaneous symbols</th>
+					<th colspan="7">Miscellaneous symbols</th>
 				</tr>
 				<tr>
 					<td class="entity">•</td>
 					<td class="description">Bullet</td>
 					<td class="ascii">*</td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">8</span></td>
+					<td class="iphone"><span class="key inverted">123</span><span class="key touchhold">-</span>&nbsp;or<br><span class="key inverted">123</span><span class="key inverted">#+=</span><span class="key">•</span></td>
+</td>
 					<td class="html">&amp;bull;</td>
 					<td class="notes">People use asterisks as bullets, so this is on the same key.</td>
 				</tr>
@@ -152,6 +197,7 @@
 					<td class="description">Degree symbol</td>
 					<td class="ascii"></td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key modifier" title="Shift">⇧</span><span class="key">8</span></td>
+					<td class="iphone"><span class="key inverted">123</span><span class="key touchhold">0</span></td>
 					<td class="html">&amp;deg;</td>
 					<td class="notes">Also circular. Like a bullet.</td>
 				</tr>
@@ -160,6 +206,7 @@
 					<td class="description">Copyright</td>
 					<td class="ascii">(C)</td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">G</span></td>
+					<td class="iphone" rowspan="3"><span class="notAvailable">—</span></td>
 					<td class="html">&amp;copy;</td>
 					<td class="notes">One could argue that the letter G and © are visually similar. One could also be a little crazy.</td>
 				</tr>
@@ -169,7 +216,7 @@
 					<td class="ascii"></td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">T</span></td>
 					<td class="html">&amp;dagger;</td>
-					<td class="notes">A daggers is an auxiliary type of asterisk†. It looks a bit like a “t”.</td>
+					<td class="notes">A dagger is an auxiliary type of asterisk†. It looks a bit like a “t”.</td>
 				</tr>
 				<tr>
 					<td class="entity">‡</td>
@@ -180,33 +227,39 @@
 					<td class="notes">†And a double dagger looks like a crossed 7?</td>
 				</tr>
 				<tr>
-					<th colspan="6">Diacritics</th>
+					<th colspan="7">Diacritics</th>
 				</tr>
 				<tr>
 					<td class="entity">é</td>
 					<td class="description" rowspan="2">Acute accent</td>
 					<td class="ascii"></td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">E</span>&nbsp;&nbsp;<span class="key">E</span></td>
+					<td class="iphone"><span class="key touchhold">E</span></td>
 					<td class="html">&amp;eacute;</td>
-					<td class="notes" rowspan="8">Each of these four types of accents shown can be added to any vowel. Hold Option and press the first key shown. Release Option and then press A, E, I, O or U to type the desired vowel with an accent. (Hold Shift when typing the vowel to capitalize it.)<br><br>Other than grave, the trigger key is the vowel that most commonly uses that accent (e for é, u for ü and i for î).</td>
+					<td class="notes" rowspan="8"><p><b>On Mac OS X:</b> Each of these four types of accents shown can be added to any vowel. Hold Option and press the first key shown. Release Option and then press A, E, I, O or U to type the desired vowel with an accent. (Hold Shift when typing the vowel to capitalize it.) Other than grave, the trigger key is the vowel that most commonly uses that accent (e for é, u for ü and i for î).</p>
+					
+					<p><b>On iOS:</b> Simply touch and hold the letter you want to be accented. Tap Shift first if you want it capitalized.</p></td>
 				</tr>
 				<tr>
 					<td class="entity">Ó</td>
 					<td class="ascii"></td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">E</span>&nbsp;&nbsp;<span class="key modifier" title="Shift">⇧</span><span class="key">O</span></td>
+					<td class="iphone"><span class="key modifier" title="Shift">⇧</span><span class="key touchhold">O</span></td>
 					<td class="html">&amp;Oacute;</td>
 				</tr>
 				<tr>
 					<td class="entity">à</td>
 					<td class="description" rowspan="2">Grave accent</td>
 					<td class="ascii"></td>
-					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">`&nbsp;&nbsp;A</span></td>
+					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">`</span>&nbsp;&nbsp;<span class="key">A</span></td>
+					<td class="iphone"><span class="key touchhold">A</span></td>
 					<td class="html">&amp;igrave;</td>
 				</tr>
 				<tr>
 					<td class="entity">È</td>
 					<td class="ascii"></td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">`</span>&nbsp;&nbsp;<span class="key modifier" title="Shift">⇧</span><span class="key">E</span></td>
+					<td class="iphone"><span class="key modifier" title="Shift">⇧</span><span class="key touchhold">E</span></td>
 					<td class="html">&amp;Egrave;</td>
 				</tr>
 				<tr>
@@ -214,12 +267,14 @@
 					<td class="description" rowspan="2">Circumflex</td>
 					<td class="ascii"></td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">I</span>&nbsp;&nbsp;<span class="key">I</span></td>
+					<td class="iphone"><span class="key touchhold">I</span></td>
 					<td class="html">&amp;ucirc;</td>
 				</tr>
 				<tr>
 					<td class="entity">Ô</td>
 					<td class="ascii"></td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">I</span>&nbsp;&nbsp;<span class="key modifier" title="Shift">⇧</span><span class="key">O</span></td>
+					<td class="iphone"><span class="key modifier" title="Shift">⇧</span><span class="key touchhold">O</span></td>
 					<td class="html">&amp;Ocirc;</td>
 				</tr>
 				<tr>
@@ -227,19 +282,22 @@
 					<td class="description" rowspan="2">Umlaut/diæresis</td>
 					<td class="ascii"></td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">U</span>&nbsp;&nbsp;<span class="key">U</span></td>
+					<td class="iphone"><span class="key touchhold">U</span></td>
 					<td class="html">&amp;uuml;</td>
 				</tr>
 				<tr>
 					<td class="entity">Ï</td>
 					<td class="ascii"></td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">U</span>&nbsp;&nbsp;<span class="key modifier" title="Shift">⇧</span><span class="key">I</span></td>
+					<td class="iphone"><span class="key modifier" title="Shift">⇧</span><span class="key touchhold">I</span></td>
 					<td class="html">&amp;Iuml;</td>
 				</tr>
 				<tr>
 					<td class="entity">ñ</td>
 					<td class="description" rowspan="2">Tilde</td>
 					<td class="ascii"></td>
-					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">N&nbsp;&nbsp;N</span></td>
+					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">N</span>&nbsp;&nbsp;<span class="key">N</span></td>
+					<td class="iphone"><span class="key touchhold">N</span></td>
 					<td class="html">&amp;ntilde;</td>
 					<td class="notes" rowspan="2">Tilde can be added to N, A and O (but not E, I or U) the same way as the accents above, and can be similarly capitalized.</td>
 				</tr>
@@ -247,6 +305,7 @@
 					<td class="entity">Ã</td>
 					<td class="ascii"></td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">N</span>&nbsp;&nbsp;<span class="key modifier" title="Shift">⇧</span><span class="key">A</span></td>
+					<td class="iphone"><span class="key modifier" title="Shift">⇧</span><span class="key touchhold">A</span></td>
 					<td class="html">&amp;Atilde;</td>
 				</tr>
 				<tr>
@@ -254,6 +313,7 @@
 					<td class="description" rowspan="2">Çedilla</td>
 					<td class="ascii"></td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key">C</span></td>
+					<td class="iphone"><span class="key touchhold">C</span></td>
 					<td class="html">&amp;ccedil;</td>
 					<td class="notes" rowspan="2">Only C can be so soft.</td>
 				</tr>
@@ -261,6 +321,7 @@
 					<td class="entity">Ç</td>
 					<td class="ascii"></td>
 					<td class="mac"><span class="key modifier" title="Option">⌥</span><span class="key modifier" title="Shift">⇧</span><span class="key">C</span></td>
+					<td class="iphone"><span class="key modifier" title="Shift">⇧</span><span class="key touchhold">C</span></td>
 					<td class="html">&amp;Ccedil;</td>
 				</tr>
 			</tbody>
