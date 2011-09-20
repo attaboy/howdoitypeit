@@ -1,5 +1,10 @@
 $(function() {
+
+	var doc = $(document);
+	var searchInput = $('#searchInput');
+	var searchButton = $('#searchButton');	
 	var tableCells = $('tbody td').not('.notes');
+	var glossaryLink = $('#glossaryLink');
 	
 	var removeHighlights = function() {
 		var el = $(this);
@@ -11,6 +16,10 @@ $(function() {
 		parent.contents().each(function() {
 			var child = $(this);
 			if (!child.contents().length) {
+				var nodeName = child[0] && child[0].nodeName;
+				if (nodeName && nodeName !== '#text') {
+					return;
+				}
 				var immediateParent = child.parent();
 				var html = immediateParent.text();
 				if (!html) { return; }
@@ -57,39 +66,41 @@ $(function() {
 	
 	var scrollSet;
 	var scrollIndex;
-	var evenBefore;
-	
-	var scrollToNext = function() {
+	var timesScrolled = 0;
+	doc.bind('ht.scrollToNextItem', function(e, suppressFlash) {
+		e.stopPropagation();
+		if (!suppressFlash) {
+			searchButton.trigger('flash');
+		}
 		if (!scrollSet) {
 			scrollSet = $('.highlight');
 			scrollIndex = 0;
+			timesScrolled = 0;
 		}
+		var before = window.scrollY;
+		var item = scrollSet.eq(scrollIndex);
 		if (scrollIndex + 1 < scrollSet.length) {
 			scrollIndex++;
 		} else {
 			scrollIndex = 0;
+			timesScrolled++;
 		}
-		if (!evenBefore) {
-			evenBefore = window.scrollY;
-		}
-		var before = window.scrollY;
-		var item = scrollSet.eq(scrollIndex);
 		if (!item) { return; }
 		$.scrollTo(item, {
 			offset: -($('table').offset().top + 20),
 			duration: 150,
 			onAfter: function() {
 				var after = window.scrollY;
-				if (before === after && before !== evenBefore) {
-					scrollToNext();
+				if (before === after && timesScrolled < 1) {
+					doc.trigger('ht.scrollToNextItem', true);
 				}
 			}
 		});
-	};
+	});
 	
 	var lastSearch;
 	
-	$('#searchInput').keyup(function(e) {
+	searchInput.keyup(function(e) {
 		var search;
 		if (e.keyCode === 27) {
 			this.value = '';
@@ -106,13 +117,22 @@ $(function() {
 			scrollSet = null;
 		}
 		if (e.keyCode === 13) {
-			scrollToNext();
+			this.select();
+			doc.trigger('ht.scrollToNextItem');
 		}
 	}).focus();
 	
-	$('#searchButton').click(function() { scrollToNext(); });
+	var searchButtonTimer;
+	searchButton.bind({
+		'click': function() { doc.trigger('ht.scrollToNextItem'); },
+		'flash': function() {
+		    window.clearTimeout(searchButtonTimer);
+		    searchButton.css({ background: '#fc993c' });
+		    searchButtonTimer = window.setTimeout(function() { searchButton.css({ background: '' }); }, 100);
+		}
+	});
 	
-	$('#glossaryLink').click(function(e) {
+	glossaryLink.click(function(e) {
 		e.preventDefault();
 		e.stopPropagation();
 		$('.glossaryBox').toggleClass('open');
@@ -120,7 +140,7 @@ $(function() {
 	
 	$('body').keyup(function(e) {	
 		if (e.keyCode === 191 && !e.shiftKey && !e.ctrlKey && !e.metaKey) {
-			$('#searchInput').focus();
+			searchInput.focus();
 		}
 	}).click(function(e) {
 		$('.glossaryBox').removeClass('open');

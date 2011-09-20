@@ -37,7 +37,7 @@ body {
 }
 
 body, input {
-	font-family: "Gentium Book Basic", Constantia, Georgia, serif;
+	font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 .main {
@@ -127,11 +127,28 @@ header h2 {
 	padding-left: 7px;
 	background-color: #3e254c;
 	color: white;
-	border-color: #1f1226;
+	border-color: #5a366e;
 	border-radius: 5px;
+	border-style: inset;
+	border-width: 1px;
 	&:focus {
 		outline-width: 0;
 	}
+	&::-webkit-input-placeholder {
+		color: #5a366e;
+	}
+}
+
+#searchButton {
+	padding: 1px 10px;
+	background-color: #b57695;
+	border-width: 1px;
+	border-radius: 5px;
+	color: white;
+}
+
+#searchButton[disabled] {
+	opacity: .5;
 }
 
 .glossaryBox {
@@ -266,7 +283,6 @@ tbody.highlighted tr.highlighted td.ascii {
 
 .key,
 tbody.highlighted tr.highlighted .key {
-	font-family: 'Lucida Grande';
 	background-color: #f4f4f4;
 	border: 1px solid #cccccc;
 	border-radius: 2px;
@@ -277,7 +293,7 @@ tbody.highlighted tr.highlighted .key {
 
 .key.modifier,
 tbody.highlighted tr.highlighted .key.modifier {
-	color: #6f6c71;
+	color: #6F6C71;
 }
 
 .key.inverted,
@@ -285,11 +301,14 @@ tbody.highlighted tr.highlighted .key.inverted {
 	background-color: #6f6c71;
 	color: white;
 	letter-spacing: -1px;
+	border-radius: 4px;
 }
 
 .key.touchhold,
 tbody.highlighted tr.highlighted .key.touchhold {
-	border-width: 1px 5px;
+	border-width: 1px 8px 1px 8px;
+	padding-left: 3px;
+	padding-right: 3px;
 }
 
 .notAvailable,
